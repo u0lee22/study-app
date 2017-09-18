@@ -277,10 +277,6 @@ bootstrap:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
 
-bootstrap-material-design:
-  version "4.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/bootstrap-material-design/-/bootstrap-material-design-4.0.0-beta.3.tgz#78c1588fbaab38f1bb66e43154fd43bf3f69a500"
-
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -533,7 +529,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-with-sourcemaps@^1.0.0:
+concat-with-sourcemaps@*, concat-with-sourcemaps@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/concat-with-sourcemaps/-/concat-with-sourcemaps-1.0.4.tgz#f55b3be2aeb47601b10a2d5259ccfb70fd2f1dd6"
   dependencies:
@@ -653,7 +649,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-dateformat@^1.0.7-1.2.3:
+dateformat@^1.0.11, dateformat@^1.0.7-1.2.3:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-1.0.12.tgz#9f124b67594c937ff706932e4a642cca8dbbfee9"
   dependencies:
@@ -912,9 +908,21 @@ event-emitter@~0.3.4:
     d "1"
     es5-ext "~0.10.14"
 
-event-stream@^3.1.7:
+event-stream@*, event-stream@^3.1.7:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
+  dependencies:
+    duplexer "~0.1.1"
+    from "~0"
+    map-stream "~0.1.0"
+    pause-stream "0.0.11"
+    split "0.3"
+    stream-combiner "~0.0.4"
+    through "~2.3.1"
+
+event-stream@3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.2.tgz#3cc310feb1f28d2f62b2a085d736a9ef566378b8"
   dependencies:
     duplexer "~0.1.1"
     from "~0"
@@ -1277,6 +1285,17 @@ gulp:
     v8flags "^2.0.2"
     vinyl-fs "^0.3.0"
 
+gulp-angular-templatecache:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-angular-templatecache/-/gulp-angular-templatecache-2.0.0.tgz#29b4071ee5574481c069a162bce8967534f17155"
+  dependencies:
+    event-stream "3.3.2"
+    gulp-concat "2.6.0"
+    gulp-footer "1.0.5"
+    gulp-header "1.8.2"
+    gulp-util "3.0.7"
+    jsesc "2.2.0"
+
 gulp-concat:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/gulp-concat/-/gulp-concat-2.6.1.tgz#633d16c95d88504628ad02665663cee5a4793353"
@@ -1284,6 +1303,14 @@ gulp-concat:
     concat-with-sourcemaps "^1.0.0"
     through2 "^2.0.0"
     vinyl "^2.0.0"
+
+gulp-concat@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/gulp-concat/-/gulp-concat-2.6.0.tgz#585cfb115411f348773131140566b6a81c69cb91"
+  dependencies:
+    concat-with-sourcemaps "^1.0.0"
+    gulp-util "^3.0.1"
+    through2 "^0.6.3"
 
 gulp-cssnano:
   version "2.1.2"
@@ -1311,6 +1338,23 @@ gulp-filter:
     gulp-util "^3.0.6"
     multimatch "^2.0.0"
     streamfilter "^1.0.5"
+
+gulp-footer@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gulp-footer/-/gulp-footer-1.0.5.tgz#e84ca777e266be7bbc2d45d2df0e7eba8dfa3e54"
+  dependencies:
+    event-stream "*"
+    gulp-util "*"
+    lodash.assign "*"
+
+gulp-header@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/gulp-header/-/gulp-header-1.8.2.tgz#3ab222f53719d2d03d81d9134252fe7d52425aa4"
+  dependencies:
+    concat-with-sourcemaps "*"
+    gulp-util "*"
+    object-assign "*"
+    through2 "^2.0.0"
 
 gulp-if:
   version "2.0.2"
@@ -1394,7 +1438,7 @@ gulp-uglify:
     uglify-js "^3.0.5"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-util, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.3, gulp-util@^3.0.6, gulp-util@^3.0.7:
+gulp-util, gulp-util@*, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.1, gulp-util@^3.0.2, gulp-util@^3.0.3, gulp-util@^3.0.6, gulp-util@^3.0.7:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -1429,6 +1473,29 @@ gulp-util@^2.2.16, gulp-util@^2.2.19:
     multipipe "^0.1.0"
     through2 "^0.5.0"
     vinyl "^0.2.1"
+
+gulp-util@3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.7.tgz#78925c4b8f8b49005ac01a011c557e6218941cbb"
+  dependencies:
+    array-differ "^1.0.0"
+    array-uniq "^1.0.2"
+    beeper "^1.0.0"
+    chalk "^1.0.0"
+    dateformat "^1.0.11"
+    fancy-log "^1.1.0"
+    gulplog "^1.0.0"
+    has-gulplog "^0.1.0"
+    lodash._reescape "^3.0.0"
+    lodash._reevaluate "^3.0.0"
+    lodash._reinterpolate "^3.0.0"
+    lodash.template "^3.0.0"
+    minimist "^1.1.0"
+    multipipe "^0.1.2"
+    object-assign "^3.0.0"
+    replace-ext "0.0.1"
+    through2 "^2.0.0"
+    vinyl "^0.5.0"
 
 gulp-webserver:
   version "0.9.1"
@@ -1789,6 +1856,10 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
+jsesc@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.2.0.tgz#c35a8613a3806c8ec3bafc0b0e196f020f7aab01"
+
 json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
@@ -1979,6 +2050,10 @@ lodash._shimkeys@~2.4.1:
   dependencies:
     lodash._objecttypes "~2.4.1"
 
+lodash.assign@*, lodash.assign@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
+
 lodash.assign@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-3.2.0.tgz#3ce9f0234b4b2223e296b8fa0ac1fee8ebca64fa"
@@ -1986,10 +2061,6 @@ lodash.assign@^3.0.0:
     lodash._baseassign "^3.0.0"
     lodash._createassigner "^3.0.0"
     lodash.keys "^3.0.0"
-
-lodash.assign@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
 
 lodash.clone@^4.3.2:
   version "4.5.0"
@@ -2509,13 +2580,13 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
+object-assign@*, object-assign@^4.0.1, object-assign@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
+
 object-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
-
-object-assign@^4.0.1, object-assign@^4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
 object.defaults@^1.1.0:
   version "1.1.0"
@@ -3457,7 +3528,7 @@ through2@^0.5.0, through2@^0.5.1:
     readable-stream "~1.0.17"
     xtend "~3.0.0"
 
-through2@^0.6.1:
+through2@^0.6.1, through2@^0.6.3:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.6.5.tgz#41ab9c67b29d57209071410e1d7a7a968cd3ad48"
   dependencies:
