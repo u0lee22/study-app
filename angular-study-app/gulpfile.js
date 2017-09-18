@@ -94,7 +94,7 @@ gulp.task('watch', function () {
     // livereload.listen();
     gulp.watch(paths.js, ['combine-js']);
     gulp.watch(paths.less, ['compile-less']);
-    gulp.watch(paths.html, ['compress-html']);
+    gulp.watch(paths.html, ['compress-html', 'template-cache']);
     gulp.watch(dist + '/**').on('change', livereload.changed);
 });
 

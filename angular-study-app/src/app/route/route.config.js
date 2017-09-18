@@ -8,10 +8,7 @@
 
     function routeConfig($stateProvider, $locationProvider, $urlRouterProvider) {
         console.log('config');
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+        $locationProvider.html5Mode(false);
 
         $urlRouterProvider.otherwise('/app/home');
 
@@ -24,6 +21,11 @@
             .state('app.home', {
                 url: '/home',
                 templateUrl: 'app/home/home.html',
+                controller: 'homeController'
+            })
+            .state('app.test', {
+                url: '/test',
+                templateUrl: 'app/home/test.html',
                 controller: 'homeController'
             })
         ;
