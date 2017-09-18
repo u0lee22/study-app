@@ -7,13 +7,13 @@
     "angular": "^1.6.6",
     "angular-route": "^1.6.6",
     "angular-ui-bootstrap": "^2.5.0",
-    "angular-ui-router": "^1.0.3",
+    "angular-ui-router": "0.4.2",
     "bootstrap": "^3.3.7",
-    "bootstrap-material-design": "^4.0.0-beta.3",
     "jquery": "^3.2.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-expect-file": "^0.0.7",

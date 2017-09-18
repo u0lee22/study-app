@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     livereload = require('gulp-livereload'),
     $ = require('gulp-load-plugins')(),
+    templateCache = require('gulp-angular-templatecache'),
     gulpsync = $.sync(gulp);
 
 var src = 'src';
@@ -79,6 +80,15 @@ gulp.task('compress-html', function () {
         .pipe(gulp.dest(dist + '/'));
 });
 
+gulp.task('template-cache', function () {
+    return gulp.src(paths.html)
+        .pipe(templateCache('templates.js', {
+            module: 'study.templates',
+            standalone:true
+        }))
+        .pipe(gulp.dest(dist + '/js'));
+});
+
 // 파일 변경 감지 및 브라우저 재시작
 gulp.task('watch', function () {
     // livereload.listen();
@@ -145,7 +155,7 @@ gulp.task('vendor:app', function () {
 //기본 task 설정
 gulp.task('default', [
     'server', 'vendor', 'combine-js',
-    'compile-less', 'compress-html',
+    'compile-less', 'compress-html', 'template-cache',
     'watch']);
 
 
