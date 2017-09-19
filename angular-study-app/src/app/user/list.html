@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="study.app">
+<head>
+    <meta charset="UTF-8">
+    <title>SelectList</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body ng-controller="userListCtrl">
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+<script src="user.controller.js"></script>
+
+<div ng-init="selectList()">
+    <ul>
+        <li ng-repeat="user in userList">
+            <span>{{user.id}}</span>
+            <span>{{user.pw}}</span>
+            <span>{{user.name}}</span>
+            <span>{{user.year}}</span>
+            <span>{{user.month}}</span>
+            <span>{{user.day}}</span>
+            <span>{{user.mailId}}</span>
+            <span>{{user.mailAddress}}</span>
+            <span>{{user.address}}</span>
+            <span>{{user.number}}</span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
