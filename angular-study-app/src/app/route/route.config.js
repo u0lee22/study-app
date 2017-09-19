@@ -43,6 +43,11 @@
                 templateUrl: 'app/user/list.html',
                 controller: 'userListCtrl'
             })
+            .state('app.cal', {
+                url: '/cal',
+                templateUrl: 'app/calculator/cal.html',
+                controller: 'calController'
+            })
         ;
     }
 })();
