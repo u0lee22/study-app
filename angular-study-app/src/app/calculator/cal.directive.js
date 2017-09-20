@@ -5,22 +5,25 @@
                     restrict: 'E',
                     replace : true,
                     scope: {
-                        resultVal : '&'
+                        value1: '=',
+                        value2: '=',
+                        operator: '=',
+                        testValue: '@'
                     },
                     template: '<div class="container">' +
                     '        <div class="row">' +
-                    '            <div class="col-sm-1 p-sm"><input type="number" class="form-control" type="text" ng-model="value1"></div>' +
+                    '            <div class="col-sm-1 p-sm"><input type="number" class="form-control" type="text" ng-model="value1" ng-change="resultVal()"></div>' +
                     '            <div class="col-sm-1 p-sm selectContainer">' +
-                    '                <select class="form-control" ng-model ="operator">' +
+                    '                <select class="form-control" ng-model ="operator" ng-change="resultVal()">' +
                     '                    <option value="+">+</option>' +
                     '                    <option value="-">-</option>' +
                     '                    <option value="*">*</option>' +
                     '                    <option value="/">/</option>' +
                     '                </select>' +
                     '            </div>' +
-                    '            <div class="col-sm-1 p-sm"><input type="number" class="form-control" type="text" ng-model="value2"></div>' +
+                    '            <div class="col-sm-1 p-sm"><input type="number" class="form-control" type="text" ng-model="value2" ng-change="resultVal()"></div>' +
                     '            <div class="col-sm-1 p-sm">' +
-                    '                <button type="submit" class="btn btn-primary form-control" ng-click="resultVal()">=</button>' +
+                    '                <button class="btn btn-primary form-control" ng-click="resultVal()">=</button>' +
                     '            </div>' +
                     '            <div class="col-sm-1 p-sm"><label class="form-control">{{resCalc}}</label></div>' +
                     '        </div>' +
