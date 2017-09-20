@@ -1,62 +1,6 @@
-<script src="user.controller.js"></script>
 <h1>회원가입</h1>
 <form>
-    <div class="container">{{test}}
-        <div class="row">
-            <div class="col-sm-1 p-sm">ID</div>
-            <div class="col-sm-3 p-sm"> <input class="form-control" type="text" ng-model="userItem.id"> </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1 p-sm"> 비밀번호</div>
-            <div class="col-sm-3 p-sm"> <input class="form-control" type="text" ng-model="userItem.pw"> </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1 p-sm"> 이름</div>
-            <div class="col-sm-3 p-sm"> <input class="form-control" type="text" ng-model="userItem.name"> </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1 p-sm">생년월일</div>
-            <div class="col-sm-1 p-sm">
-                <input type="number" class="form-control" ng-model="userItem.year" min="1800" max="2017">
-            </div>
-            <div class="col-sm-1 pb-sm pt">
-                <label>년</label>
-            </div>
-            <div class="col-sm-1 pb-sm">
-                <input type="number" class="form-control" ng-model="userItem.month" min="01" max="12">
-            </div>
-            <div class="col-sm-1 pb-sm pt">
-                <label>월</label>
-            </div>
-            <div class="col-sm-1 p-sm">
-                <input type="number" class="form-control" ng-model="userItem.day" min="01" max="31">
-            </div>
-            <div class="col-sm-1 pb-sm pt">
-                <label>일</label></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1 p-sm">E-Mail</div>
-            <div class="col-sm-2 p-sm">
-                <input type="text" class="form-control" ng-model="userItem.mailId">
-            </div>
-            <div class="col-sm-1 pb-sm pt">
-                <label>@</label>
-            </div>
-            <div class="col-sm-2 p-sm">
-                <input type="text" class="form-control" ng-model="userItem.mailAddress">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1 p-sm">주소</div>
-            <div class="col-sm-8 p-sm"><input type="text" class="form-control" ng-model="userItem.address"> </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-1 p-sm">전화번호</div>
-            <div class="col-sm-8 p-sm"> <input type="text" class="form-control" ng-model="userItem.number"> </div>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary" ng-click="createUser()">가입</button>
-            <button type="reset" class="btn btn-secondary"  >취소</button>
-        </div>
-    </div>
+    <user-create></user-create>
 </form>
+
+

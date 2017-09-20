@@ -1,19 +1,4 @@
-
-<script src="user.controller.js"></script>
-
-<div ng-init="selectList()">
-    <ul>
-        <li ng-repeat="user in userList">
-            <span>{{user.id}}</span>
-            <span>{{user.pw}}</span>
-            <span>{{user.name}}</span>
-            <span>{{user.year}}</span>
-            <span>{{user.month}}</span>
-            <span>{{user.day}}</span>
-            <span>{{user.mailId}}</span>
-            <span>{{user.mailAddress}}</span>
-            <span>{{user.address}}</span>
-            <span>{{user.number}}</span>
-        </li>
-    </ul>
-</div>
+<form>
+    <h1>{{user.name}}</h1>
+    <user-select selected-user="user"></user-select>
+</form>
