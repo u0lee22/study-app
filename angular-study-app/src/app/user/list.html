@@ -22,11 +22,22 @@
                     <tr ng-repeat="user in userList | userFilter: search">
                         <td>{{user.id}}</td>
                         <td>{{user.pw}}</td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.date}}</td>
+                        <td><a ng-click='detail($index)'>{{user.name}}</a></td>
+                        <td>{{user.date | date:'yyyy/MM/dd'}}</td>
                         <td>{{user.mailId}}@{{user.mailAddress}}</td>
                         <td>{{user.address}}</td>
                         <td>{{user.number}}</td>
+                    </tr>
+                </table>
+
+                <table class="table table-bordered table-hover table-condensed">
+                    <tr>
+                        <td>컬럼</td>
+                        <td>값</td>
+                    </tr>
+                    <tr ng-repeat="(key, value) in item">
+                        <td>{{key}}</td>
+                        <td>{{value | date : 'yyyy/MM/dd'}}</td>
                     </tr>
                 </table>
             </div>

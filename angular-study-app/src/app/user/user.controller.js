@@ -10,15 +10,20 @@
         $scope.userItem = {
             date : new Date()
         }
+        $scope.userList = [];
         $scope.format = 'yyyy/MM/dd'
         $scope.init = function () {
             userService.get().then(function (data) {
                 $scope.userList = data;
             })
         }
-        $scope.searching = function () {
 
+        $scope.detail = function (index) {
+            $scope.item = $scope.userList[index];
         }
     }
 })
 ();
+
+
+
