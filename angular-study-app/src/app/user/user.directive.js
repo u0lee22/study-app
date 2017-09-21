@@ -1,5 +1,4 @@
 (function () {
-
     angular.module('study.app')
         .directive('userCreate', ['userService', function (userService) {
                 return {
@@ -20,23 +19,14 @@
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-sm-1 p-sm">생년월일</div>\n' +
-                    '            <div class="col-sm-1 p-sm">\n' +
-                    '                <input type="number" class="form-control" ng-model="userItem.year" min="1800" max="2017">\n' +
+                    '            <div class="col-sm-3 p-sm">\n' +
+                    '               <p class="input-group">\n' +
+                    '                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="userItem.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />\n' +
+                    '                <span class="input-group-btn">\n' +
+                    '                    <button type="button" class="btn btn-default" ng-click="open1()"> <i class="glyphicon-calendar glyphicon"></i> </button>\n' +
+                    '                </span>\n' +
+                    '               </p>\n' +
                     '            </div>\n' +
-                    '            <div class="col-sm-1 pb-sm pt">\n' +
-                    '                <label>년</label>\n' +
-                    '            </div>\n' +
-                    '            <div class="col-sm-1 pb-sm">\n' +
-                    '                <input type="number" class="form-control" ng-model="userItem.month" min="01" max="12">\n' +
-                    '            </div>\n' +
-                    '            <div class="col-sm-1 pb-sm pt">\n' +
-                    '                <label>월</label>\n' +
-                    '            </div>\n' +
-                    '            <div class="col-sm-1 p-sm">\n' +
-                    '                <input type="number" class="form-control" ng-model="userItem.day" min="01" max="31">\n' +
-                    '            </div>\n' +
-                    '            <div class="col-sm-1 pb-sm pt">\n' +
-                    '                <label>일</label></div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-sm-1 p-sm">E-Mail</div>\n' +
@@ -63,13 +53,21 @@
                     '            <button class="btn btn-secondary"  >취소</button>\n' +
                     '        </div>\n' +
                     '    </div>',
-                    link: function ($scope, element, attrs) {
-                        $scope.userItem = {};
-                        $scope.createUser = function () {
-                            userService.create($scope.userItem).then
+                    link: function (scope, element, attrs) {
+                        scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+                        scope.format = scope.formats[1];
+                        scope.popup1 = {
+                            opened: false
+                        };
+                        scope.altInputFormats = ['M!/d!/yyyy'];
+                        scope.createUser = function () {
+                            userService.create(scope.userItem).then
                             (function (res) {
                                 alert(res);
                             });
+                        }
+                        scope.open1 = function () {
+                            scope.popup1.opened = true;
                         }
                     }
                 }
@@ -90,9 +88,7 @@
                     '            <span>{{user.id}}</span>\n' +
                     '            <span>{{user.pw}}</span>\n' +
                     '            <span ng-click="selectUser(user)">{{user.name}}</span>\n' +
-                    '            <span>{{user.year}}</span>\n' +
-                    '            <span>{{user.month}}</span>\n' +
-                    '            <span>{{user.day}}</span>\n' +
+                    '            <span>{{user.date}}</span>\n' +
                     '            <span>{{user.mailId}}</span>\n' +
                     '            <span>{{user.mailAddress}}</span>\n' +
                     '            <span>{{user.address}}</span>\n' +
@@ -101,17 +97,17 @@
                     '    </ul>\n' +
                     '</div>',
                     link: function (scope, element, attrs) {
-
                         scope.userList = null;
-                        scope.selectUser = function(user) {
+                        scope.selectUser = function (user) {
                             scope.selectedUser = user;
                         };
 
                         function init() {
-                            userService.get().then(function(data) {
+                            userService.get().then(function (data) {
                                 scope.userList = data;
                             })
                         }
+
                         init();
                     }
                 }

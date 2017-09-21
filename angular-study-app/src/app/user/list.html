@@ -1,4 +1,35 @@
 <form>
-    <h1>{{user.name}}</h1>
-    <user-select selected-user="user"></user-select>
+
+    <!--<user-select selected-user="user"></user-select>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 p-sm">
+                <input type="text" ng-model="search">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 p-sm">
+                <table ng-init='init()' class="table table-bordered table-hover table-condensed">
+                    <tr>
+                        <td>ID</td>
+                        <td>PW</td>
+                        <td>이름</td>
+                        <td>날짜</td>
+                        <td>E-Mail</td>
+                        <td>주소</td>
+                        <td>전화번호</td>
+                    </tr>
+                    <tr ng-repeat="user in userList | userFilter: search">
+                        <td>{{user.id}}</td>
+                        <td>{{user.pw}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.date}}</td>
+                        <td>{{user.mailId}}@{{user.mailAddress}}</td>
+                        <td>{{user.address}}</td>
+                        <td>{{user.number}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </form>
