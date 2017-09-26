@@ -38,5 +38,11 @@ angular.module('study.app')
 appConfig.$inject = ['validationProvider'];
 
 function appConfig(validationProvider) {
-    validationProvider.setArrValidation();
+    var userValidation = [
+        {key :'loginId', inValid:'SUBSCRIBER_ID'},
+        {key :'password', invalid:'password'},
+        {key :'name', invalid:'NAME'}
+    ];
+
+    validationProvider.setArrValidation(userValidation);
 }
