@@ -15,7 +15,11 @@ var dist = 'dist';
 var isProduction = false;
 
 var paths = {
-    js: src + '/app/**/*.js',
+    js: {
+        root: src + '/js/**/*.js',
+        app: src + '/js/app/**/*.js',
+        module: src + '/js/module/**/*.js',
+    },
     less: src + '/less/**/*.less',
     html: src + '/**/*.html'
 };
@@ -60,8 +64,16 @@ gulp.task('server', function () {
 
 // 자바스크립트 파일을 하나로 합치고 압축한다.
 gulp.task('combine-js', function () {
-    return gulp.src(paths.js)
+    return gulp.src(paths.js.app)
         .pipe(concat('app.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(dist + '/js'));
+});
+
+// 자바스크립트 파일을 하나로 합치고 압축한다.
+gulp.task('combine-module', function () {
+    return gulp.src(paths.js.module)
+        .pipe(concat('module.js'))
         .pipe(uglify())
         .pipe(gulp.dest(dist + '/js'));
 });
@@ -92,7 +104,7 @@ gulp.task('template-cache', function () {
 // 파일 변경 감지 및 브라우저 재시작
 gulp.task('watch', function () {
     // livereload.listen();
-    gulp.watch(paths.js, ['combine-js']);
+    gulp.watch(paths.js.root, ['combine-js', 'combine-module']);
     gulp.watch(paths.less, ['compile-less']);
     gulp.watch(paths.html, ['compress-html', 'template-cache']);
     gulp.watch(dist + '/**').on('change', livereload.changed);
@@ -154,7 +166,7 @@ gulp.task('vendor:app', function () {
 
 //기본 task 설정
 gulp.task('default', [
-    'server', 'vendor', 'combine-js',
+    'server', 'vendor', 'combine-js', 'combine-module',
     'compile-less', 'compress-html', 'template-cache',
     'watch']);
 

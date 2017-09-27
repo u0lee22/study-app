@@ -1,10 +1,10 @@
 (function () {
-    angular.module('validate').config(appConfig);
+    angular.module('study.app').config(validationConfig);
 
-    appConfig.$inject = ['validationProvider'];
+    validationConfig.$inject = ['validationProvider'];
 
-    function appConfig(validationProvider) {
-        console.log('config');
+    function validationConfig(validationProvider) {
+        console.log('validationConfig');
         validationProvider.setValidation('USER', {
             'id': {key: 'id', inValid: 'ID'},
             'password': {key: 'password', inValid: 'PASSWORD'},

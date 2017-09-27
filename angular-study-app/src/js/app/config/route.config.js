@@ -16,7 +16,7 @@
             .state('app', {
                 url: '/app',
                 abstract: true,
-                templateUrl: 'app/app.html'
+                templateUrl: 'js/app/app.html'
             })
             .state('app.home', {
                 url: '/home',

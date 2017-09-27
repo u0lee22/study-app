@@ -1,5 +1,5 @@
 (function () {
-    angular.module('validate')
+    angular.module('validation')
         .provider('validation', function () {
         var patterns = {
                 PASSWORD: 'password',
@@ -45,7 +45,6 @@
                 function getValidation() {
                     return arrValidation;
                 }
-
                 return {getValidation: getValidation};
             }
         };
