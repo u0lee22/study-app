@@ -77,7 +77,6 @@
                                     break;
                                 }
                                 else {
-                                    console.log('a-2');
                                     count++;
                                 }
                             }
