@@ -11,6 +11,7 @@ function userService($q, users) {
             reslove('회원가입완료 id : ' + user.id);
         });
     };
+
     this.get = function () {
         return $q(function (reslove) {
             reslove(users)

@@ -7,7 +7,6 @@
     routeConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider'];
 
     function routeConfig($stateProvider, $locationProvider, $urlRouterProvider) {
-        console.log('config');
         $locationProvider.html5Mode(false);
 
         $urlRouterProvider.otherwise('/app/home');
@@ -20,12 +19,12 @@
             })
             .state('app.home', {
                 url: '/home',
-                templateUrl: 'app/home/home.html',
+                templateUrl: 'js/app/home/home.html',
                 controller: 'homeController'
             })
             .state('app.test', {
                 url: '/test',
-                templateUrl: 'app/home/test.html',
+                templateUrl: 'js/app/home/test.html',
                 controller: 'homeController'
             })
             .state('app.user', {
@@ -35,17 +34,17 @@
             })
             .state('app.user.create', {
                 url: '/create',
-                templateUrl: 'app/user/create.html',
+                templateUrl: 'js/app/user/create.html',
                 controller: 'userListCtrl'
             })
             .state('app.user.list', {
                 url: '/list',
-                templateUrl: 'app/user/list.html',
+                templateUrl: 'js/app/user/list.html',
                 controller: 'userListCtrl'
             })
             .state('app.cal', {
                 url: '/cal',
-                templateUrl: 'app/calculator/cal.html',
+                templateUrl: 'js/app/calculator/cal.html',
                 controller: 'calController'
             })
         ;

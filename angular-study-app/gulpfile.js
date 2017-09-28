@@ -16,7 +16,7 @@ var isProduction = false;
 
 var paths = {
     js: {
-        root: src + '/js/**/*.js',
+        root: src + '/js/**/**/*.js',
         app: src + '/js/app/**/*.js',
         module: src + '/js/module/**/*.js',
     },

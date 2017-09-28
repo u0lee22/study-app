@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('study.app')
-        .directive('userCreate', ['userService', function (userService) {
+        .directive('userCreate', ['userService','validation', function (userService, validation) {
                 return {
                     restrict: 'E',
                     replace: true,
@@ -56,7 +56,7 @@
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-sm-1 p-sm">전화번호</div>\n' +
-                    '            <div class="col-sm-8 p-sm"> <input type="text" class="form-control" ng-model="userItem.number"> </div>\n' +
+                    '            <div class="col-sm-8 p-sm"> <input type="text" class="form-control" ng-model="userItem.mobile"> </div>\n' +
                     '        </div>\n' +
                     '        <div>\n' +
                     '            <button class="btn btn-primary" ng-click="createUser()">가입</button>\n' +
@@ -65,11 +65,30 @@
                     '    </div>',
                     link: function ($scope, element, attrs) {
                         $scope.userItem = {};
+                        $scope.Message = [];
+
                         $scope.createUser = function () {
-                            userService.create($scope.userItem).then
-                            (function (res) {
-                                alert(res);
-                            });
+                            var count = 0;
+                            $scope.Message = validation.getValidation($scope.userItem);
+                            for(var i in $scope.Message)
+                            {
+                                if ($scope.Message[i].isValid == false) {
+                                    alert($scope.Message[i].resultObject);
+                                    break;
+                                }
+                                else {
+                                    console.log('a-2');
+                                    count++;
+                                }
+                            }
+
+                            if(count == $scope.Message.length)
+                            {
+                                userService.create($scope.userItem).then
+                                (function (res) {
+                                    alert(res);
+                                });
+                            }
                         }
                     }
                 }
@@ -96,7 +115,7 @@
                     '            <span>{{user.mailId}}</span>\n' +
                     '            <span>{{user.mailAddress}}</span>\n' +
                     '            <span>{{user.address}}</span>\n' +
-                    '            <span>{{user.number}}</span>\n' +
+                    '            <span>{{user.mobile}}</span>\n' +
                     '        </li>\n' +
                     '    </ul>\n' +
                     '</div>',
