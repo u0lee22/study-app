@@ -4,12 +4,8 @@
     validationConfig.$inject = ['validationProvider'];
 
     function validationConfig(validationProvider) {
-        validationProvider.setValidation('USER', {
-            'id': {key: 'id', inValid: 'ID'},
-            'pw': {key: 'password', inValid: 'PASSWORD'},
-            'name': {key: 'name', inValid: 'NAME'},
-            'mobile': {key: 'mobile', inValid: 'MOBILE'}
-        });
+        //TODO : validation service의 setValidation 함수호출 (key와 유효성 체크할 컬럼 오브젝트)
+        //validationProvider.setValidation('USER', {});
     }
 })
 ();

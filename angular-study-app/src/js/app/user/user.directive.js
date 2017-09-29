@@ -68,31 +68,11 @@
                         $scope.Message = [];
 
                         $scope.createUser = function () {
-                            var count = 0;
-                            $scope.Message = validation.getValidation('USER', $scope.userItem);
-                            for(var i in $scope.Message)
-                            {
-                                console.log($scope.Message[i].isValid);
-                                if ($scope.Message[i].isValid == false) {
-                                    console.log('a-1');
-                                    alert($scope.Message[i].resultObject);
-                                }
-                                else {
-                                    console.log('a-2');
-                                    count++;
-                                }
-                            }
-
-                            if(count == $scope.Message.length)
-                            {
-                                console.log('b');
-                                userService.create($scope.userItem).then
-                                (function (res) {
-                                    alert(res);
-                                });
-
-                            }
-                            console.log('c');
+                            //TODO : Validation get함수 호출(key, $scope.userItem)
+                            userService.create($scope.userItem).then
+                            (function (res) {
+                                alert(res);
+                            });
                         }
                     }
                 }
