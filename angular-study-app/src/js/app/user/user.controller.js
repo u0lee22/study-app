@@ -7,6 +7,12 @@
 
     function userListCtrl($scope) {
         $scope.user = {};
+
+        $scope.status = {
+            isCustomHeaderOpen: false,
+            isFirstOpen: true,
+            isFirstDisabled: false
+        };
     }
 })
 ();
