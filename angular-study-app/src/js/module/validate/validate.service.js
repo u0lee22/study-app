@@ -32,14 +32,18 @@
             mobile: /^\d{2,3}-\d{3,4}-\d{4}$/
         };
 
-        var arrValidation = [];
+
+        var objValidation = {};
         var resultVal = [];
 
         return {
             setValidation: function (key, obj) {
+                var arrValidation = [];
                 for (var i in obj) {
                     arrValidation.push(this.getValidationOption(obj[i].key, obj[i].inValid, obj[i].pattern, obj[i].compareTo, obj[i].valid));
                 }
+                objValidation[key] = arrValidation;
+                console.log(objValidation);
             },
 
             getValidationOption: function (key, inValid, pattern, compareTo, valid) {
@@ -54,10 +58,12 @@
 
             $get: ['$parse', function ($parse) {
                 return {
-                    getValidation: function (object) {
+                    getValidation: function (key, object) {
                         var arr = [];
-                        for (var i in arrValidation) {
-                            var option = arrValidation[i];
+
+                        console.log(objValidation[key]);
+                        for (var i in objValidation[key]) {
+                            var option = objValidation[key][i];
                             var isValid = this.isValidValue($parse(option.key)(object), option.pattern, option.pattern === patterns.EQUAL_EACH_OTHER ? $parse(option.compareTo)(object) : option.compareTo);
                             arr.push({
                                 isValid: isValid,

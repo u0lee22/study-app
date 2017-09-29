@@ -12,7 +12,7 @@
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-sm-1 p-sm"> 비밀번호</div>\n' +
-                    '            <div class="col-sm-3 p-sm"> <input class="form-control" type="text" ng-model="userItem.pw"> </div>\n' +
+                    '            <div class="col-sm-3 p-sm"> <input class="form-control" type="text" ng-model="userItem.password"> </div>\n' +
                     '        </div>\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-sm-1 p-sm"> 이름</div>\n' +
@@ -69,25 +69,30 @@
 
                         $scope.createUser = function () {
                             var count = 0;
-                            $scope.Message = validation.getValidation($scope.userItem);
+                            $scope.Message = validation.getValidation('USER', $scope.userItem);
                             for(var i in $scope.Message)
                             {
+                                console.log($scope.Message[i].isValid);
                                 if ($scope.Message[i].isValid == false) {
+                                    console.log('a-1');
                                     alert($scope.Message[i].resultObject);
-                                    break;
                                 }
                                 else {
+                                    console.log('a-2');
                                     count++;
                                 }
                             }
 
                             if(count == $scope.Message.length)
                             {
+                                console.log('b');
                                 userService.create($scope.userItem).then
                                 (function (res) {
                                     alert(res);
                                 });
+
                             }
+                            console.log('c');
                         }
                     }
                 }
