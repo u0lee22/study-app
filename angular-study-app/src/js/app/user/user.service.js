@@ -3,7 +3,7 @@ angular.module('study.app').service('userService', userService);
 angular.module('study.app').value('users', []);
 angular.module('study.app').value('careers', []);
 
-userService.$inject = ['$q', 'users'];
+userService.$inject = ['$q', 'users', 'careers'];
 
 function userService($q, users, careers) {
     this.create = function (user) {
@@ -14,8 +14,7 @@ function userService($q, users, careers) {
     };
 
     this.addCareer = function (career) {
-
-        careers.push(angular.copy(career))
+        careers.push(angular.copy(career));
         return $q(function (reslove) {
             reslove(careers)
         });
@@ -24,7 +23,6 @@ function userService($q, users, careers) {
     this.get = function () {
         return $q(function (reslove) {
             reslove(users)
-            console.log(users);
         })
     };
 }
