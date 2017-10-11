@@ -16,12 +16,10 @@
                 mail: {id: 'NULL', address: 'NULL'},
                 address: 'NULL',
                 mobile: 'NULL',
-                company: {info: {name: 'NULL', tel: 'NULL'}, address: 'NULL'},
+                company: {name: 'NULL', tel: 'NULL', address: 'NULL'},
                 position: 'NULL',
                 career: [{company: 'NULL', position: 'NULL'}]
             });
         }
-
-
     };
 })();

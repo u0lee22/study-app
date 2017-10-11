@@ -1,5 +1,99 @@
 <h1>회원가입</h1>
 <form>
     <user-create></user-create>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1 p-sm">ID</div>
+            <div class="col-sm-3 p-sm"><input class="form-control" type="text" ng-model="userItem.id"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm"> 비밀번호</div>
+            <div class="col-sm-3 p-sm"><input class="form-control" type="text" ng-model="userItem.password"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm"> 이름</div>
+            <div class="col-sm-3 p-sm"><input class="form-control" type="text" ng-model="userItem.name"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">생년월일</div>
+            <div class="col-sm-1 p-sm">
+                <input type="number" class="form-control" ng-model="userItem.year" min="1800" max="2017">
+            </div>
+            <div class="col-sm-1 pb-sm pt">
+                <label>년</label>
+            </div>
+            <div class="col-sm-1 pb-sm">
+                <input type="number" class="form-control" ng-model="userItem.month" min="01" max="12">
+            </div>
+            <div class="col-sm-1 pb-sm pt">
+                <label>월</label>
+            </div>
+            <div class="col-sm-1 p-sm">
+                <input type="number" class="form-control" ng-model="userItem.day" min="01" max="31">
+            </div>
+            <div class="col-sm-1 pb-sm pt">
+                <label>일</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">E-Mail</div>
+            <div class="col-sm-3 p-sm">
+                <input type="text" class="form-control" ng-model="userItem.mail.id">
+            </div>
+            <div class="col-sm-1 pb-sm pt">
+                <label>@</label>
+            </div>
+            <div class="col-sm-3 p-sm">
+                <input type="text" class="form-control" ng-model="userItem.mail.address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">주소</div>
+            <div class="col-sm-7 p-sm"><input type="text" class="form-control" ng-model="userItem.address"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">전화번호</div>
+            <div class="col-sm-7 p-sm"><input type="text" class="form-control" ng-model="userItem.mobile"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">회사이름</div>
+            <div class="col-sm-7 p-sm"><input type="text" class="form-control" ng-model="userItem.company.name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">회사번호</div>
+            <div class="col-sm-7 p-sm"><input type="text" class="form-control" ng-model="userItem.company.tel">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">회사주소</div>
+            <div class="col-sm-7 p-sm"><input type="text" class="form-control" ng-model="userItem.company.address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 p-sm">경력사항</div>
+            <div class="col-sm-7 p-sm">
+                <uib-accordion close-others="oneAtATime">
+                    <div uib-accordion-group class="panel-default" heading="경력사항" is-open="status.isFirstOpen"
+                         is-disabled="status.isFirstDisabled">
+                        <div class="row" ng-repeat="career in userItem.career">
+                            <div class="col-sm-1 p-sm">회사명</div>
+                            <div class="col-sm-3 p-sm">
+                                <input type="text" class="form-control" ng-model="career.company">
+                            </div>
+                            <div class="col-sm-1 p-sm">직책</div>
+                            <div class="col-sm-3 p-sm">
+                                <input type="text" class="form-control" ng-model="career.position">
+                            </div>
+                        </div>
+                        <a ng-click="addCareer(career.company, career.position)">추가</a>
+                    </div>
+                </uib-accordion>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" ng-click="createUser()">가입</button>
+            <button class="btn btn-secondary">취소</button>
+        </div>
+    </div>
 </form>
 
