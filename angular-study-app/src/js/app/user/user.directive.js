@@ -22,20 +22,19 @@
                     template: '<div ng-init="selectList()">\n' +
                     '    <ul>\n' +
                     '        <li ng-repeat="user in userList">\n' +
-                    '            <span>{{user.id}}</span>\n' +
-                    '            <span>{{user.pw}}</span>\n' +
-                    '            <span ng-click="selectUser(user)">{{user.name}}</span>\n' +
-                    '            <span>{{user.year}}</span>\n' +
-                    '            <span>{{user.month}}</span>\n' +
-                    '            <span>{{user.day}}</span>\n' +
-                    '            <span>{{user.mail.id}}@{{user.mail.address}}</span>\n' +
-                    '            <span>{{user.address}}</span>\n' +
-                    '            <span>{{user.mobile}}</span>\n' +
-                    '            <span>{{user.company.name}}</span>\n' +
-                    '            <span>{{user.company.tel}}</span>\n' +
-                    '            <span>{{user.company.address}}</span>\n' +
-                    '            <span>{{user.career.company}}</span>\n' +
-                    '            <span>{{user.career.position}}</span>\n' +
+                    '            <span>아이디 : {{user.id}}</span>\n' +
+                    '            <span>비번 : {{user.pw}}</span>\n' +
+                    '            <span>이름 : {{user.name}}</span>\n' +
+                    '            <span>날짜 : {{user.year}}년</span>\n' +
+                    '            <span>{{user.month}}월</span>\n' +
+                    '            <span>{{user.day}}일</span>\n' +
+                    '            <span>이메일 : {{user.mail.id}}@{{user.mail.address}}</span>\n' +
+                    '            <span>주소 : {{user.address}}</span>\n' +
+                    '            <span>연락처 : {{user.mobile}}</span>\n' +
+                    '            <span>회사명 : {{user.company.name}}</span>\n' +
+                    '            <span>회사번호 : {{user.company.tel}}</span>\n' +
+                    '            <span>회사주소 : {{user.company.address}}</span>\n' +
+                    '            <span ng-repeat="career in user.career" >경력 회사 : {{career.company}} 경력 직책 : {{career.position}}</span>\n' +
                     '        </li>\n' +
                     '    </ul>\n' +
                     '</div>',

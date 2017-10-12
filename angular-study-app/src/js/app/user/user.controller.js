@@ -11,11 +11,20 @@
             mail: {id: '', address: ''},
             company: {name: '', tel: '', address: ''},
             career: [{company: '', position: ''}],
-            aaa: ''
         };
 
         $scope.createUser = function () {
             //TODO : Validation get함수 호출(key, $scope.userItem)
+
+            // var result = validation.getValidation('USER', $scope.userItem);
+            // console.log(result);
+            //
+            // if (result == null) {
+            //     userService.create($scope.userItem).then
+            //     (function (res) {
+            //         alert(res);
+            //     });
+            // }
 
             if (this.isEmptyObj($scope.userItem) > 0) {
                 var result = validation.getValidation('USER', $scope.userItem);
@@ -26,14 +35,13 @@
                     });
                 }
                 else {
-                    alert(result);
+                    alert(result + '정보를 입력하세요.');
                 }
             }
             else {
                 alert('가입정보를 입력하세요.');
             }
         };
-
 
         $scope.isEmptyObj = function (obj) {
             var count = 0;
@@ -45,7 +53,7 @@
                     }
                 }
                 else {
-                    if (obj[i] != '' && obj[i].indexOf('object:')) {
+                    if (obj[i] != '') {
                         console.log(obj[i]);
                         count++;
                     }

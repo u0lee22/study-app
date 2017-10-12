@@ -17,7 +17,6 @@
                 address: 'NULL',
                 mobile: 'NULL',
                 company: {name: 'NULL', tel: 'NULL', address: 'NULL'},
-                position: 'NULL',
                 career: [{company: 'NULL', position: 'NULL'}]
             });
         }
