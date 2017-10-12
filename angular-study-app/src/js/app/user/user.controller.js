@@ -15,17 +15,6 @@
 
         $scope.createUser = function () {
             //TODO : Validation get함수 호출(key, $scope.userItem)
-
-            // var result = validation.getValidation('USER', $scope.userItem);
-            // console.log(result);
-            //
-            // if (result == null) {
-            //     userService.create($scope.userItem).then
-            //     (function (res) {
-            //         alert(res);
-            //     });
-            // }
-
             if (this.isEmptyObj($scope.userItem) > 0) {
                 var result = validation.getValidation('USER', $scope.userItem);
                 if (result == null) {
@@ -45,17 +34,20 @@
 
         $scope.isEmptyObj = function (obj) {
             var count = 0;
-            for (var i in  obj) {
-                if (typeof obj[i] === 'object') {
-                    var result = this.isEmptyObj(obj[i]);
+            var values = Object.values(obj);
+            for (var i = 0; i < values.length; i++) {
+                if (typeof values[i] === 'object' || angular.isArray(values[i])) {
+                    var result = this.isEmptyObj(values[i]);
                     if (result > 0) {
                         count = +result;
                     }
                 }
                 else {
-                    if (obj[i] != '') {
-                        console.log(obj[i]);
+                    console.log(values[i], count);
+                    if (values[i] != '' && (!values[i].includes('object:'))) {
                         count++;
+                        if (count > 0)
+                            return count;
                     }
                 }
             }
