@@ -43,7 +43,6 @@
                     }
                 }
                 else {
-                    console.log(values[i], count);
                     if (values[i] != '' && (!values[i].includes('object:'))) {
                         count++;
                         if (count > 0)

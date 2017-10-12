@@ -68,7 +68,6 @@
 
                     validationArray: function (arr, inputArr) {
                         for (var i = 0; i < inputArr.length; i++) {
-                            console.log(inputArr[i]);
                             if (angular.isArray(inputArr[i])) {
                                 for (var j = 0; j < arr.length; j++) {
                                     this.validationArray(arr[j], inputArr[i]);
