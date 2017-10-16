@@ -15,6 +15,7 @@
                 return {
                     getValidation: function (keyConfig, objInput) {
                         //TODO : key에 해당하는 설정 object를 입력받은 object와 비교 후 유효성 체크 결과 return
+
                         var keys = Object.keys(arrValue[keyConfig]);
                         var values = Object.values(arrValue[keyConfig]);
                         for (var i = 0; i < keys.length; i++) {
@@ -63,6 +64,7 @@
                                     }
                                 }
                             }
+                            return null;
                         }
                     },
 
