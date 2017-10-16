@@ -8,7 +8,6 @@
     function userListCtrl($scope, userService, validation) {
         $scope.status = {isFirstOpen: true};
         $scope.userItem = {
-            mail: {id: '', address: ''},
             company: {name: '', tel: '', address: ''},
             career: [{company: '', position: ''}],
         };

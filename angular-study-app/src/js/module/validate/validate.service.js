@@ -10,6 +10,7 @@
                 //TODO : config에서 설정된 check항목 setting
                 arrValue[key] = obj;
             },
+
             $get: function () {
                 return {
                     getValidation: function (keyConfig, objInput) {
@@ -17,73 +18,72 @@
                         var keys = Object.keys(arrValue[keyConfig]);
                         var values = Object.values(arrValue[keyConfig]);
                         for (var i = 0; i < keys.length; i++) {
-                            if (typeof values[i] === 'object') {
-                                if (angular.isArray(values[i])) {
-                                    var result = this.validationArray(arrValue[keyConfig][keys[i]], objInput[keys[i]]);
-                                    if (result != null) {
-                                        return keys[i] + '|' + result;
+                            if (angular.isObject(values[i]) || angular.isArray(values[i])) {
+                                if (!angular.isUndefined(values[i]['key'])) {
+                                    var result = this.patternCheck(angular.isUndefined(values[i]['check']) ? 'EMPTY' : values[i]['check'], objInput[values[i]['key']]);
+                                    if (result == false) {
+                                        return values[i]['key'];
                                     }
                                 }
                                 else {
-                                    var result = this.validationObj(arrValue[keyConfig][keys[i]], objInput[keys[i]]);
+                                    var result = this.validationFunc(arrValue[keyConfig][keys[i]], objInput[keys[i]]);
                                     if (result != null) {
                                         return keys[i] + '|' + result;
                                     }
-                                }
-                            }
-                            else {
-                                if (!this.patternCheck(values[i], objInput[keys[i]])) {
-                                    return keys[i];
                                 }
                             }
                         }
                         return null;
                     },
 
-                    validationObj: function (arr, obj) {
-                        var keys = Object.keys(arr);
-                        var values = Object.values(arr);
-                        for (var i = 0; i < keys.length; i++) {
-                            if (typeof values[i] === 'object') {
-                                if (angular.isArray(values[i])) {
-                                    var result = this.validationArray(arr[keys[i]], obj[keys[i]]);
-                                    if (result != null) {
-                                        return keys[i] + '|' + result;
-                                    }
-                                }
-                                else {
-                                    var result = this.validationObj(arr[keys[i]], obj[keys[i]]);
-                                    if (result === null) {
-                                        return keys[i] + '|' + result;
-                                    }
+                    validationFunc: function (arr, value) {
+                        if (angular.isArray(value)) {
+                            for (var i = 0; i < value.length; i++) {
+                                for (var j = 0; j < arr.length; j++) {
+                                    return this.validationFunc(arr[j], value[i]);
                                 }
                             }
-                            else {
-                                if (!this.patternCheck(values[i], obj[keys[i]])) {
-                                    return keys[i];
+                        }
+                        else if (angular.isObject(value)) {
+                            var keys = Object.keys(arr);
+                            var values = Object.values(arr);
+                            for (var i = 0; i < keys.length; i++) {
+                                if (angular.isObject(values[i]) || angular.isArray(values[i])) {
+                                    if (!angular.isUndefined(values[i]['key'])) {
+                                        var result = this.patternCheck(angular.isUndefined(values[i]['check']) ? 'EMPTY' : values[i]['check'], value[values[i]['key']]);
+                                        if (result == false) {
+                                            return values[i]['key'];
+                                        }
+                                    } else {
+                                        var result = this.validationFunc(arr[keys[i]], value[keys[i]]);
+
+                                        if (result != null) {
+                                            return keys[i] + '|' + result;
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
 
-                    validationArray: function (arr, inputArr) {
-                        for (var i = 0; i < inputArr.length; i++) {
-                            if (angular.isArray(inputArr[i])) {
-                                for (var j = 0; j < arr.length; j++) {
-                                    this.validationArray(arr[j], inputArr[i]);
-                                }
-                            } else {
-                                for (var j = 0; j < arr.length; j++) {
-                                    return this.validationObj(arr[j], inputArr[i]);
-                                }
-                            }
-                        }
+                    regexMap: {
+                        'PASSWORD': /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-\\/|{}~])(?=.*[0-9]).{8,16}$/,
+                        'NUMBER': /^[+-]?\d*(\.?\d*)$/,
+                        'EMAIL': /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/,
+                        'ID': /^[a-z0-9_.-]{5,20}$/,
+                        'TEL': /^\d{2,3}-\d{3,4}-\d{4}$/
                     },
 
                     patternCheck: function (pattern, value) {
                         switch (pattern) {
+                            case 'EMPTY' :
+                                return !(angular.isUndefined(value) || value == null || value === '');
+                                break;
+
                             default:
-                                return !(angular.isUndefined(value) || value === null || value === '');
+                                console.log(this.regexMap[pattern].test(value));
+                                return this.regexMap[pattern] == null || value == null ? false : this.regexMap[pattern].test(value);
+                                break;
                         }
                     }
                 }
