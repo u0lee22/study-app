@@ -24,8 +24,18 @@
                 .setValidation('USER', validationProvider.setOption())
                 .setValidation('USER.pw', validationProvider.setOption('pw', 'PW'))
                 .setValidation('USER.id', validationProvider.setOption('id', 'ID'))
+                .setValidation('USER.name', validationProvider.setOption('name'))
+                .setValidation('USER.year', validationProvider.setOption('year', 'NUMBER'))
+                .setValidation('USER.month', validationProvider.setOption('month', 'NUMBER'))
+                .setValidation('USER.day', validationProvider.setOption('day', 'NUMBER'))
+                .setValidation('USER.mail', validationProvider.setOption('mail', 'EMAIL'))
+                .setValidation('USER.address', validationProvider.setOption('address'))
+                .setValidation('USER.mobile', validationProvider.setOption('mobile', 'TEL'))
                 .setValidation('USER.company', validationProvider.setOption())
-                .setValidation('USER.company.name', validationProvider.setOption('name'));
+                .setValidation('USER.company.name', validationProvider.setOption('name'))
+                .setValidation('USER.company.tel', validationProvider.setOption('tel', 'TEL'))
+                .setValidation('USER.company.address', validationProvider.setOption('address'))
+                .setValidation('USER.career', [validationProvider.setOption('company'), validationProvider.setOption('position')]);
 
 
             /*validationProvider.setValidation('CAMPAIGN', {
@@ -95,3 +105,4 @@
         }
     }
 })();
+

@@ -6,10 +6,7 @@
         var objValue = {};
         return {
             setOption: function (key, check) {
-                if (angular.isUndefined(key))
-                    return {}
-                else
-                    return {key: key, check: angular.isUndefined(check) ? 'EMPTY' : check}
+                return angular.isUndefined(key) ? {} : {key: key, check: angular.isUndefined(check) ? 'EMPTY' : check}
             },
 
             setValidation: function (key, obj) {
@@ -19,21 +16,15 @@
                     console.log(pv, cv, keys[keys.length - 1]);
                     if (cv == keys[keys.length - 1]) {
                         if (pv) {
-                            var pvObj = objValue[pv]
+                            var pvObj = objValue[pv];
                             pvObj[cv] = obj;
                             objValue[pv] = pvObj;
-                            return pv ? pv : cv;
                         }
                         else {
                             objValue[cv] = obj
-                            return pv ? pv : cv;
                         }
                     }
-                    else {
-                        if (angular.isObject(objValue[pv ? pv : cv])) {
-                            return pv ? pv : cv;
-                        }
-                    }
+                    return pv ? pv : cv;
                 }, null);
                 console.log(objValue)
                 return this;
