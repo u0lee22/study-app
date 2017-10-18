@@ -6,19 +6,27 @@
     function validationConfig(validationProvider) {
         //TODO : validation service의 setValidation 함수호출 (key와 유효성 체크할 컬럼 오브젝트)
         {
-            validationProvider.setValidation('USER', {
-                id: {key: 'id', check: 'ID'},
-                password: {key: 'password', check: 'PASSWORD'},
-                name: {key: 'name'},
-                year: {key: 'year', check: 'NUMBER'},
-                month: {key: 'month', check: 'NUMBER'},
-                day: {key: 'day', check: 'NUMBER'},
-                mail: {key: 'mail', check: 'EMAIL'},
-                address: {key: 'address'},
-                mobile: {key: 'mobile', check: 'TEL'},
-                company: {name: {key: 'name'}, tel: {key: 'tel', check: 'TEL'}, address: {key: 'address'}},
-                career: [{company: {key: 'company'}, position: {key: 'position'}}]
-            });
+            // validationProvider.setValidation('USER', {
+            //     id: {key: 'id', check: 'ID'},
+            //     password: {key: 'password', check: 'PASSWORD'},
+            //     name: {key: 'name'},
+            //     year: {key: 'year', check: 'NUMBER'},
+            //     month: {key: 'month', check: 'NUMBER'},
+            //     day: {key: 'day', check: 'NUMBER'},
+            //     mail: {key: 'mail', check: 'EMAIL'},
+            //     address: {key: 'address'},
+            //     mobile: {key: 'mobile', check: 'TEL'},
+            //     company: {name: {key: 'name'}, tel: {key: 'tel', check: 'TEL'}, address: {key: 'address'}},
+            //     career: [{company: {key: 'company'}, position: {key: 'position'}}]
+            // });
+
+            validationProvider
+                .setValidation('USER', validationProvider.setOption())
+                .setValidation('USER.pw', validationProvider.setOption('pw', 'PW'))
+                .setValidation('USER.id', validationProvider.setOption('id', 'ID'))
+                .setValidation('USER.company', validationProvider.setOption())
+                .setValidation('USER.company.name', validationProvider.setOption('name'));
+
 
             /*validationProvider.setValidation('CAMPAIGN', {
                 subscriber: {key: 'SUBSCRIBER'},

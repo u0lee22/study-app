@@ -3,25 +3,53 @@
         .provider('validation', validationProvider);
 
     function validationProvider() {
-        var arrValue = [];
-
+        var objValue = {};
         return {
+            setOption: function (key, check) {
+                if (angular.isUndefined(key))
+                    return {}
+                else
+                    return {key: key, check: angular.isUndefined(check) ? 'EMPTY' : check}
+            },
+
             setValidation: function (key, obj) {
                 //TODO : config에서 설정된 check항목 setting
-                arrValue[key] = obj;
+                var keys = key.split('.');
+                var parent = keys.reduce(function (pv, cv) {
+                    console.log(pv, cv, keys[keys.length - 1]);
+                    if (cv == keys[keys.length - 1]) {
+                        if (pv) {
+                            var pvObj = objValue[pv]
+                            pvObj[cv] = obj;
+                            objValue[pv] = pvObj;
+                            return pv ? pv : cv;
+                        }
+                        else {
+                            objValue[cv] = obj
+                            return pv ? pv : cv;
+                        }
+                    }
+                    else {
+                        if (angular.isObject(objValue[pv ? pv : cv])) {
+                            return pv ? pv : cv;
+                        }
+                    }
+                }, null);
+                console.log(objValue)
+                return this;
             },
+
 
             $get: function () {
                 return {
                     getValidation: function (keyConfig, objInput) {
                         //TODO : key에 해당하는 설정 object를 입력받은 object와 비교 후 유효성 체크 결과 return
-
-                        var keys = Object.keys(arrValue[keyConfig]);
-                        var values = Object.values(arrValue[keyConfig]);
+                        var keys = Object.keys(objValue[keyConfig]);
+                        var values = Object.values(objValue[keyConfig]);
                         for (var i = 0; i < keys.length; i++) {
                             if (angular.isObject(values[i]) || angular.isArray(values[i])) {
                                 if (!angular.isUndefined(values[i]['key'])) {
-                                    var result = this.patternCheck(angular.isUndefined(values[i]['check']) ? 'EMPTY' : values[i]['check'], objInput[values[i]['key']]);
+                                    var result = this.patternCheck(values[i]['check'], objInput[values[i]['key']]);
                                     if (result == false) {
                                         return values[i]['key'];
                                     }
@@ -51,9 +79,12 @@
                             for (var i = 0; i < keys.length; i++) {
                                 if (angular.isObject(values[i]) || angular.isArray(values[i])) {
                                     if (!angular.isUndefined(values[i]['key'])) {
-                                        var result = this.patternCheck(angular.isUndefined(values[i]['check']) ? 'EMPTY' : values[i]['check'], value[values[i]['key']]);
+                                        var result = this.patternCheck(values[i]['check'], value[values[i]['key']]);
                                         if (result == false) {
                                             return values[i]['key'];
+                                        }
+                                        else {
+                                            return result;
                                         }
                                     } else {
                                         var result = this.validationFunc(arr[keys[i]], value[keys[i]]);
