@@ -69,7 +69,7 @@
                 <uib-accordion close-others="oneAtATime">
                     <div uib-accordion-group class="panel-default" heading="경력사항" is-open="status.isFirstOpen"
                          is-disabled="status.isFirstDisabled">
-                        <div class="row" ng-repeat="career in userItem.career">
+                        <div class="row" ng-repeat="career in userItem.career track by $index">
                             <div class="col-sm-1 p-sm">회사명</div>
                             <div class="col-sm-3 p-sm">
                                 <input type="text" class="form-control" ng-model="career.company">
