@@ -16,6 +16,8 @@
             //TODO : Validation get함수 호출(key, $scope.userItem)
             if (this.isEmptyObj($scope.userItem) > 0) {
                 var result = validation.getValidation('USER', $scope.userItem);
+                console.log(result)
+
                 if (result == null) {
                     userService.create($scope.userItem).then
                     (function (res) {

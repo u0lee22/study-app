@@ -6,136 +6,26 @@
     function validationConfig(validationProvider) {
         //TODO : validation service의 setValidation 함수호출 (key와 유효성 체크할 컬럼 오브젝트)
         {
+            validationProvider
+                .setValidation('CAREER')
+                .setValidation('CAREER.company', {validationMsg: '유효성', msg: '회사명'})
+                .setValidation('CAREER.position', {validationMsg: '유효성', msg: '직책'})
 
             validationProvider
-                .setValidation('career', [])
-                .setValidation('career.company', {})
-                .setValidation('career.position', {})
+                .setValidation('COMPANY')
+                .setValidation('COMPANY.name', {validationMsg: '유효성', msg: '이름'})
+                .setValidation('COMPANY.tel', {validationMsg: '유효성', msg: '전화번호'})
+                .setValidation('COMPANY.address', {validationMsg: '유효성', msg: '주소'})
 
             validationProvider
                 .setValidation('USER')
-                .setValidation('USER.id', {
-                    type: '',
-                    isNullCheck: true,
-                    regex: 'ID',
-                    regexType: ''
-                })
-                .setValidation('USER.password', {
-                    type: 'PASSWORD',
-                    //message : validationProvider.getTranslateAndFormattedText('SENTENCE_75', 'PASSWORD'),
-                    isNullCheck: true,
-                    regex: 'PASSWORD',
-                    regexType: ''
-                })
-                .setValidation('USER.name', {})
-                .setValidation('USER.year', {})
-                .setValidation('USER.month', {})
-                .setValidation('USER.day', {})
-                .setValidation('USER.mail', {})
-                .setValidation('USER.address', {})
-                .setValidation('USER.mobile', {})
-                .setValidation('USER.company')
-                .setValidation('USER.company.name', {})
-                .setValidation('USER.company.tel', {})
-                .setValidation('USER.company.address', {})
-                .setValidation('USER.career', 'career');
-
-
-            // validationProvider.setValidation('USER', {
-            //     id: {key: 'id', check: 'ID'},
-            //     password: {key: 'password', check: 'PASSWORD'},
-            //     name: {key: 'name'},
-            //     year: {key: 'year', check: 'NUMBER'},
-            //     month: {key: 'month', check: 'NUMBER'},
-            //     day: {key: 'day', check: 'NUMBER'},
-            //     mail: {key: 'mail', check: 'EMAIL'},
-            //     address: {key: 'address'},
-            //     mobile: {key: 'mobile', check: 'TEL'},
-            //     company: {name: {key: 'name'}, tel: {key: 'tel', check: 'TEL'}, address: {key: 'address'}},
-            //     career: [{company: {key: 'company'}, position: {key: 'position'}}]
-            // });
-            //
-            // validationProvider
-            //     .setValidation('USER', validationProvider.setOption())
-            //     .setValidation('USER.id', validationProvider.setOption('id', 'ID'))
-            //     .setValidation('USER.password', validationProvider.setOption('password', 'PW'))
-            //     .setValidation('USER.name', validationProvider.setOption('name'))
-            //     .setValidation('USER.year', validationProvider.setOption('year', 'NUMBER'))
-            //     .setValidation('USER.month', validationProvider.setOption('month', 'NUMBER'))
-            //     .setValidation('USER.day', validationProvider.setOption('day', 'NUMBER'))
-            //     .setValidation('USER.mail', validationProvider.setOption('mail', 'EMAIL'))
-            //     .setValidation('USER.address', validationProvider.setOption('address'))
-            //     .setValidation('USER.mobile', validationProvider.setOption('mobile', 'TEL'))
-            //     .setValidation('USER.company', validationProvider.setOption())
-            //     .setValidation('USER.company.name', validationProvider.setOption('name'))
-            //     .setValidation('USER.company.tel', validationProvider.setOption('tel', 'TEL'))
-            //     .setValidation('USER.company.address', validationProvider.setOption('address'))
-            //     .setValidation('USER.career', [validationProvider.setOption('company'), validationProvider.setOption('position')]);
-
-            /*validationProvider.setValidation('CAMPAIGN', {
-                subscriber: {key: 'SUBSCRIBER'},
-                brand: {key: 'BRAND'},
-                type: {key: 'CAMPAIGN_TYPE'},
-                title: {key: 'CAMPAIGN_NAME'},
-                taxInvoiceIssueMonth: {key: 'TAX_INVOICES_ISSUE_MONTH'},
-                adGroups: {
-                    ads: {
-                        product: [{key: 'ADVERTISEMENT'}, {key: 'PRODUCT'}],
-                        startAt: {key: 'ADVERTISEMENT_PERIOD'},
-                        endAt: {key: 'ADVERTISEMENT_PERIOD'},
-                        amount: [{key: 'ADVERTISEMENT'}, {key: 'SUBSCRIPTION_AMOUNT'}],
-                        targetImpressionCnt: [{key: 'ADVERTISEMENT'}, {key: 'GUARANTEE_IMPRESSION_COUNT'}],
-                        title: {key: 'ADVERTISEMENT_NAME'}
-                    }
-                }
-            });
-
-            validationProvider.setValidation('ASSET', {
-                advertiserUser: {key: 'advertiserUser', inValid: 'SENTENCE_36'},
-                serviceMedia: {key: 'serviceMedia', inValid: 'SENTENCE_212'},
-                title: {key: 'title', inValid: 'SENTENCE_131'},
-                uploaded: {key: 'uploaded', inValid: 'SENTENCE_51'/!*, ValidationService.patterns.NOT_EQUAL, false*!/}
-            });
-
-
-            validationProvider.setValidation('CONTRACT', {
-                    subscriber: {key: 'subscriber', inValid: 'SUBSCRIPTION_ACCOUNT'},
-                    advertiser: {key: 'advertiser', inValid: 'ADVERTISER'},
-                    startAt: {key: 'startAt', inValid: 'CONTRACT_PERIOD'},
-                    endAt: {key: 'endAt', inValid: 'CONTRACT_PERIOD'},
-                    name: {key: 'name', inValid: 'CONTRACT_DETAIL_NAME'},
-                    amount: {key: 'amount', inValid: 'CONTRACT_AMOUNT'}
-                }
-            );
-
-            validationProvider.setValidation('CONTRACT', {
-                    subscriber: {key: 'subscriber', inValid: 'SUBSCRIPTION_ACCOUNT'},
-                    advertiser: {key: 'advertiser', inValid: 'ADVERTISER'},
-                    startAt: {key: 'startAt', inValid: 'CONTRACT_PERIOD'},
-                    endAt: {key: 'endAt', inValid: 'CONTRACT_PERIOD'},
-                    name: {key: 'name', inValid: 'CONTRACT_DETAIL_NAME'},
-                    amount: {key: 'amount', inValid: 'CONTRACT_AMOUNT'}
-                }
-            );
-
-
-            validationProvider.setValidation('PRODUCT', {
-                displayStartAt: {key: 'displayStartAt', inValid: 'PERIOD'},
-                displayEndAt: {key: 'displayEndAt', inValid: 'PERIOD'},
-                skipTimeInSec: [$scope.productEditObj.media].media.name === 'oksusu' ?
-                    {
-                        key: 'skipTimeInSec',
-                        inValid: 'SKIP_SECONDS',
-                        pattern: ValidationService.patterns.GREATER_THAN,
-                        compareTo: 0
-                    } :
-                    {
-                        key: 'limitTimeInSec',
-                        inValid: 'ASSET_LENGTH_SHORT',
-                        pattern: ValidationService.patterns.GREATER_THAN,
-                        compareTo: 0
-                    }
-            });*/
+                .setValidation('USER.id', {validationMsg: '유효성', msg: '아이디', regex: 'LOGIN_ID'})
+                .setValidation('USER.password', {validationMsg: '유효성', msg: '비밀번호', regex: 'PASSWORD'})
+                .setValidation('USER.name', {msg: 'NAME'})
+                .setValidation('USER.mobile', {validationMsg: 'SENTENCE_184', msg: 'PHONE', regex: 'MOBILE'})
+                .setValidation('USER.email', {validationMsg: 'SENTENCE_183', msg: 'EMAIL', regex: 'EMAIL'})
+                .setValidation('USER.career', {type: 'array', genericType: 'CAREER'})
+                .setValidation('USER.company', {type: 'object',genericType: 'COMPANY'})
         }
     }
 })();
