@@ -15,7 +15,7 @@
         $scope.createUser = function () {
             //TODO : Validation get함수 호출(key, $scope.userItem)
             if (this.isEmptyObj($scope.userItem) > 0) {
-                var result = validation.getValidation('USER', $scope.userItem);
+                var result = validation.getResultValidation('USER', $scope.userItem);
                 console.log(result)
 
                 if (result == null) {
@@ -25,7 +25,7 @@
                     });
                 }
                 else {
-                    alert(result + '정보를 입력하세요.');
+                    alert(result.msg + '정보를 입력하세요.');
                 }
             }
             else {
